@@ -1,7 +1,11 @@
 import React from 'react';
-const Home=()=>{
+const Home=(books)=>{
     return(
-    <h1>My Books</h1>
+        <div>
+           
+               <h1>My Books</h1> 
+        </div>
+
     )
 }
 export default Home
