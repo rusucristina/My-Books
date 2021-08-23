@@ -1,11 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import AddFavorite from './AddFavorite';
 import SearchBox from './SearchBox';
-const Search = ( {input, searchBooks, setBooks, books}) => {
+const apiKey = "AIzaSyD2yN3QpTM4EnZubly1aijzVPgiYPjFkc0";
+const Search = () => {
+    const [books, setBooks] = useState([]);
+  
+    console.log(books);
     const [categories, setCategories] = useState()
     const [selectedCategory, setSelectedCategory] = useState("")
     const [readLater, setReadLater] = useState([])
     const [alreadyFinished, setAlreaadyFinished] = useState([])
+
+    const searchBooks = async (input) => {
+        let response = await fetch(
+            `https://www.googleapis.com/books/v1/volumes?q=${input}+inauthor&orderBy=newest&key=${apiKey}&filter=partial&maxResults=40&orderBy=relevance`
+        );
+        let responseJson = await response.json();
+        if (responseJson.items) {
+            setBooks(responseJson.items);
+        }
+    };
+    console.log(books);
     console.log(books)
     let newCategories = []
     for (let i = 0; i < books?.length; i++) {
@@ -26,7 +41,7 @@ const Search = ( {input, searchBooks, setBooks, books}) => {
     }
     console.log("selectedCategory")
     console.log(selectedCategory)
-    
+
     const addReadLaterBook = (event, id) => {
         let readLater = []
         for (let i = 0; i < books?.length; i++) {
@@ -48,12 +63,9 @@ const Search = ( {input, searchBooks, setBooks, books}) => {
             <h1>Search</h1>
             <strong className="quotes-search" >Let`s start by searching books that you are currently reading or want to read later</strong>
             <form className="col col-sm-4" >
-               <SearchBox
-               books={books}
-               setBooks={setBooks}
-               input={input}
-               searchBooks={searchBooks}
-               />
+                <SearchBox
+                    searchBooks={searchBooks}
+                />
                 <select onSelect={handleCategoryFilter}  >
                     {newCategories?.map(category => (
                         <option value={category}>{category}</option>
