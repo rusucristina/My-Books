@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from 'react-router-dom'
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-default navbar-expand-lg navbar-light bg-light">
             <div className="navbar-collapse">
                 <div className="navbar-nav">
                     <ul className="nav navbar-nav">

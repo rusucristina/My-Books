@@ -12,7 +12,7 @@ const Search = () => {
     const [alreadyFinished, setAlreaadyFinished] = useState([])
 
     const searchBooks = async (input) => {
-        let response = await fetch(
+        let response = await fetch (
             `https://www.googleapis.com/books/v1/volumes?q=${input}+inauthor&orderBy=newest&key=${apiKey}&filter=partial&maxResults=40&orderBy=relevance`
         );
         let responseJson = await response.json();
