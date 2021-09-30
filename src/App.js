@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import Activity from "./components/Activity";
 import Profile from "./components/Profile";
 import Quotes from "./components/Quotes";
-import Search from "./components/Search";
+import Search from "./components/Search/Search";
 function App() {
   return (
     <HashRouter>

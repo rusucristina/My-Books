@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import AddFavorite from './AddFavorite';
+import AddFavorite from '../AddFavorite';
 import SearchBox from './SearchBox';
+import './Search.css';
 const apiKey = "AIzaSyD2yN3QpTM4EnZubly1aijzVPgiYPjFkc0";
-const Search = () => {
+
+const Search = (setInput) => {
     const [books, setBooks] = useState([]);
   
+    console.log("books")
     console.log(books);
     const [categories, setCategories] = useState()
     const [selectedCategory, setSelectedCategory] = useState("")
@@ -12,7 +15,7 @@ const Search = () => {
     const [alreadyFinished, setAlreaadyFinished] = useState([])
 
     const searchBooks = async (input) => {
-        let response = await fetch (
+        let response = await fetch(
             `https://www.googleapis.com/books/v1/volumes?q=${input}+inauthor&orderBy=newest&key=${apiKey}&filter=partial&maxResults=40&orderBy=relevance`
         );
         let responseJson = await response.json();
@@ -20,8 +23,6 @@ const Search = () => {
             setBooks(responseJson.items);
         }
     };
-    console.log(books);
-    console.log(books)
     let newCategories = []
     for (let i = 0; i < books?.length; i++) {
         if (newCategories.indexOf(books[i]?.volumeInfo?.categories?.[0]) === -1) {
@@ -71,37 +72,42 @@ const Search = () => {
                         <option value={category}>{category}</option>
                     ))}
                 </select>
-
-                <section className="container-fluid row books-app" >
-                    <div className="row d-flex align-items-center mt-4 mv-4">
-                        {books?.map((item, id) => (
-                            <div key={item?.id} className='image-container d-flex justify-content-center m-3'>
-                                <img
-                                    alt={item?.volumeInfo?.title}
-                                    src={item?.volumeInfo?.imageLinks?.thumbnail} />
-                                {/* <a target="_blank" href={item?.volumeInfo?.canonicalVolumeLink}><h6>{item?.volumeInfo?.title}</h6></a>
-                                <div >
-                                    <ul >
-                                        <li>by {item?.volumeInfo?.authors}</li>
-                                        <li>Page Count: {item?.volumeInfo?.pageCount}</li>
-                                        <li>Category: {item?.volumeInfo?.categories}</li>
-                                    </ul>
-                                </div> */}
-                                <div className="overlay d-flex align-items-center justify-content-center">
-                                    <AddFavorite />
-                                    <button onClick={() => addReadLaterBook(id)}
-                                    >Read Later</button>
-                                    <button
-                                        onClick={addAlreadyFinishedBook}
-                                    >Already Finished</button>
+                <div className="all-search-book">
+                    <section classname="section-search" nopadding>
+                    <div className="hr"  style={{width: setInput?"30vw": "0px"}} />
+                        <div className="section-title" main>What we find</div>
+                        <div className="grid-container">
+                            {books?.map(({ id, volumeInfo }) => (
+                                <div className="book-card" key={id}>
+                                    <img className="img-search" src={volumeInfo?.imageLinks?.thumbnail} />
+                                    <div className="title-content">
+                                        <div className="header-three" title>
+                                            {volumeInfo?.title}
+                                        </div>
+                                        <div className="hr" />
+                                        <div className="card-info">
+                                            descriere
+                                        </div>
+                                        <div>
+                                            <div className="tag-list">
+                                                taguri
+                                                categorii
+                                            </div>
+                                        </div>
+                                        <div className="utility-list">
+                                            <button onClick={() => addReadLaterBook()} className="external-links" >
+                                                Read Later
+                                            </button>
+                                            <button onClick={addAlreadyFinishedBook} className="external-links" >
+                                                Already Finished
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-
-                            </div>
-                        ))
-                        }
-                    </div>
-
-                </section>
+                            ))}
+                        </div>
+                    </section>
+                </div>
             </form>
         </>
     )
