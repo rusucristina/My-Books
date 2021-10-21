@@ -16,9 +16,9 @@ const SearchBox = ({ searchBooks }) => {
           aria-label="Search"
           onChange={e => setInput(e.target.value)}
         />
-        <button id="button-search-box" onClick={searchBooks} type="submit">
+        {/* <button id="button-search-box" onClick={searchBooks} type="submit">
           <BsSearch style={{ alignItems: "center" }} />
-        </button>
+        </button> */}
 
       </form>
     </>

@@ -1,6 +1,6 @@
 import React from 'react';
-import myImgQuotes from "../image/autumn-leaves-and-very-old-books-wallpaper-1600x480_68.jpg"
-import quotesBackground from "../image/90b3a4464dd20bb2dd6c4534bb17fdd9.jpg"
+// import myImgQuotes from "../image"
+// import quotesBackground from "../image/90b3a4464dd20bb2dd6c4534bb17fdd9.jpg"
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -23,7 +23,7 @@ const Quotes = () => {
         <div>
             <h1>Quotes</h1>
             <strong className="quotes-search" >Add your favorite quotes here</strong>
-            <img src={myImgQuotes} alt="book autumn" />
+            {/* <img src={myImgQuotes} alt="book autumn" /> */}
             <input
                 className="form-control mt-3"
                 placeholder="Add your favorite qoutes"
@@ -36,7 +36,7 @@ const Quotes = () => {
                 <div>
 
                     <div className="col-12 text-center d-flex">
-                        <img className="img-fluid of" src={quotesBackground} alt="quotes background" max-width="100%"  />
+                        {/* <img className="img-fluid of" src={quotesBackground} alt="quotes background" max-width="100%"  /> */}
                         <div className="quotes-search text-dark w-20 position-absolute mt-5">
                             {quote}
                             <button onClick={()=>handleDelete()}>

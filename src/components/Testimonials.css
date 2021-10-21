@@ -1,0 +1,13 @@
+.testimonials{
+   grid-column-start: 2;
+   grid-column-end: 3;
+   display: flex;
+   flex-direction: column;
+}
+.testimonials-title{
+    justify-self: center;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2.5rem;
+    color:#42174a;
+    margin-top: 70px !important;
+}
